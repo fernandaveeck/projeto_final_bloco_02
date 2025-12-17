@@ -27,5 +27,10 @@ export class CategoriaService {
     async create(categoria: Categoria): Promise<Categoria> {
         return await this.categoriaRepository.save(categoria)
     }
-    
+
+    async uptade(categoria: Categoria): Promise<Categoria> {
+        await this.findById(categoria.id)
+
+        return await this.categoriaRepository.save(categoria);
+    }
 }
