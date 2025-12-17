@@ -15,7 +15,6 @@ import { Categoria } from './categoria/entities/categoria.entity';
       password: 'root',
       database: 'db_farmaciaBloco02',
       entities: [Categoria],
-      synchronize: true,
     }),
     CategoriaModule
   ],
