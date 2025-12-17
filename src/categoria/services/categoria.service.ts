@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Categoria } from "../entities/categoria.entity";
-import { Repository } from "typeorm";
+import { ILike, Repository } from "typeorm";
 
 @Injectable()
 export class CategoriaService {
@@ -18,5 +18,9 @@ export class CategoriaService {
             throw new HttpException('Categoria não encontrada.', HttpStatus.NOT_FOUND);
 
         return categoria;
+    }
+
+    async findAllByDescricao(descricao: string): Promise<Categoria[]> {
+        return await this.categoriaRepository.find({ where: {descricao: ILike(`%${descricao}%`)}})
     }
 }
