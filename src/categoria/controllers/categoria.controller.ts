@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post } from "@nestjs/common";
 import { CategoriaService } from "../services/categoria.service";
 import { Categoria } from "../entities/categoria.entity";
 
@@ -22,5 +22,11 @@ export class CategoriaController {
     @HttpCode(HttpStatus.OK)
     findAllByDescricao(@Param('descricao') descricao: string): Promise<Categoria[]> {
         return this.categoriaService.findAllByDescricao(descricao);
+    }
+
+    @Post()
+    @HttpCode(HttpStatus.CREATED)
+    create(@Body() categoria: Categoria): Promise<Categoria> {
+        return this.categoriaService.create(categoria);
     }
 }

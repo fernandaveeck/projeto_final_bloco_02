@@ -23,4 +23,9 @@ export class CategoriaService {
     async findAllByDescricao(descricao: string): Promise<Categoria[]> {
         return await this.categoriaRepository.find({ where: {descricao: ILike(`%${descricao}%`)}})
     }
+
+    async create(categoria: Categoria): Promise<Categoria> {
+        return await this.categoriaRepository.save(categoria)
+    }
+    
 }
